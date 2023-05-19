@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  indreni:
+      build:
+        context: .
+      restart: always
+      volumes:
+       - ./static-data:/vol/web
+       - ./database:/database
+      environment:
+       - SECRET_KEY=${SECRET_KEY}
+       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+
+  proxy:
+   build:
+    context: ./proxy
+   restart: always
+   depends_on:
+    - indreni
+   ports:
+    - 80:9090
+   volumes:
+    - ./static-data:/vol/static
+
+volumes:
+ static-data:
+  
+

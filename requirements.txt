@@ -1,0 +1,6 @@
+Django>=4.2.1,<4.3
+gunicorn
+lxml
+django-cors-headers
+bs4
+requests
